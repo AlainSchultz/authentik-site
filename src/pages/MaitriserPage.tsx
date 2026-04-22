@@ -67,7 +67,7 @@ const Navbar = () => {
 };
 
 const Hero = () => (
-  <section className="relative pt-[60px] min-h-[400px] flex items-center overflow-hidden">
+  <section className="relative pt-[60px] min-h-[500px] flex items-center overflow-hidden bg-hero-architecture">
     <div className="max-w-7xl mx-auto px-10 w-full">
       <div className="max-w-3xl mx-auto text-center">
         <motion.div
@@ -355,7 +355,7 @@ const Pricing = () => (
             </ul>
           </div>
           <a
-            href="https://buy.stripe.com/5kQ6oH6xx7zM0yV3q84c800"
+            href="https://www.authentik-experience.com/authentikbilancomplet-bdc"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full py-4 rounded-lg border border-brand-orange/30 text-white font-bold hover:bg-brand-orange/10 transition-colors text-center"
@@ -395,7 +395,7 @@ const Pricing = () => (
             </ul>
           </div>
           <a
-            href="https://www.notion.so/2b3b63d1fa0c805480e2c7f3b207df76?pvs=21"
+            href="https://www.authentik-experience.com/authentikpacksignature"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full btn-sleek btn-sleek-primary !py-4 text-center"

@@ -97,6 +97,17 @@
   background-attachment: fixed;
 }
 
+.bg-hero-architecture::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, #020617);
+  pointer-events: none;
+}
+
 .bg-fire-water::before {
   content: "";
   position: absolute;

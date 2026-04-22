@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-[#020617] text-slate-200 antialiased selection:bg-orange-500/30 selection:text-orange-200;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+}
+
+.glass {
+  @apply bg-slate-900/50 backdrop-blur-xl border border-slate-800/50;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-white to-cyan-400;
+}
+
+.accent-cyan {
+  @apply text-cyan-400;
+}
+
+.accent-orange {
+  @apply text-orange-500;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-orange-600 to-orange-400 text-white shadow-[0_0_30px_rgba(234,88,12,0.3)];
+}
+
+.btn-secondary {
+  @apply bg-slate-800 border border-slate-700 text-white hover:bg-slate-700;
+}

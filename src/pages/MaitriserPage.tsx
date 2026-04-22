@@ -157,29 +157,29 @@ const StatsBar = () => (
 const TransformationPath = () => {
   const steps = [
     {
-      id: "01", title: "L'Assemblée des Six Âmes", icon: <Users className="w-6 h-6" />,
+      id: "01", title: "L'Assemblée des Cinq Âmes", icon: <Users className="w-6 h-6" />,
       desc: "L'alignement de vos forces n'est pas une question de volonté, mais une question d'harmonie écologique. Chaque archétype que vous portez—qu'il soit l'écho de la vision de Jack Dorsey, de l'imaginaire de Miyazaki, ou de l'efficacité clinique de Tim Duncan—porte une intention. Le conflit émerge lorsque ces énergies, faute de direction, entrent en collision ou se neutralisent.",
-      image: "https://images.unsplash.com/photo-1532703108233-69111d554cb4?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/assemblee_ames.png",
     },
     {
       id: "02", title: "La Chorégraphie des Forces", icon: <Zap className="w-6 h-6" />,
       desc: "La 'Chorégraphie intérieure' est cette danse subtile : une force, portée à son excès, devient la geôle d'une autre. Le pôle de cette force la transforme en friction. Sans cette compréhension, vous risquez la dérive.",
-      image: "https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/choregraphie_forces.png",
     },
     {
       id: "03", title: "Briser les Sortilèges", icon: <ShieldAlert className="w-6 h-6" />,
       desc: "Nous appelons 'Sortilèges' ces croyances automatiques qui agissent comme des scripts de sabotage. Ils ne cèdent pas devant de simples affirmations positives. La psyché exige des vérités ancrées capables de réécrire votre narration interne en profondeur.",
-      image: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/briser_sortileges.png",
     },
     {
       id: "04", title: "Activer les Contre-Incantations", icon: <Scroll className="w-6 h-6" />,
       desc: "Le Sortilège (La Croyance Automatique) vs La Contre-Incantation (La Vérité Ancrée). Des vérités ancrées capables de réécrire votre narration interne en profondeur pour remplacer les blocages par des piliers de certitude.",
-      image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/contre_incantations.png",
     },
     {
       id: "05", title: "Pistes d'Incarnation", icon: <Compass className="w-6 h-6" />,
       desc: "La métamorphose n'est réelle que lorsqu'elle est incarnée. La réflexion doit céder la place au geste. Pour un Virtuose, le geste salvateur consiste à 'abaisser volontairement la complexité'. C'est le courage de livrer une œuvre à 80% de sa perfection idéale pour briser le verrou de l'immobilisme.",
-      image: "https://images.unsplash.com/photo-1505506819745-451446a1f946?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/pistes_incarnation.png",
       extras: [
         { label: "Le Courage de Trahir la Perfection :", desc: "Rendre l'œuvre accessible par l'imperfection choisie." },
         { label: "Le Sabotage du Script :", desc: "Briser délibérément vos propres automatismes de réussite." },

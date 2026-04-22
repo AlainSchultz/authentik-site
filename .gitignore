@@ -17,8 +17,8 @@ temp_docx_ev/
 temp_check_ext/
 temp_check/
 
-# Temp zip files
-traversee.zip
-strategie.zip
-temp_ev.zip
-temp_check.zip
+# Zip files
+*.zip
+
+# Marketing docs (fichiers de travail, pas du code)
+marketing/

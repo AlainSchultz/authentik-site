@@ -197,6 +197,12 @@ export default function TraverseePage() {
             <div className="w-8 h-8 bg-gradient-to-tr from-orange-500 to-cyan-500 rounded-full flex items-center justify-center font-bold text-white text-sm group-hover:scale-110 transition-transform">A</div>
             <span className="text-xl font-bold tracking-tighter text-white">AUTHENTIK</span>
           </Link>
+          <Link
+            to="/bilan"
+            className="hidden md:block text-[10px] uppercase tracking-widest text-purple-400 hover:text-purple-300 transition-colors font-bold"
+          >
+            Le Bilan
+          </Link>
           <a
             href="mailto:contact@experience-authentik.com"
             className="px-5 py-2 rounded-full border border-orange-500/30 text-[10px] uppercase tracking-widest text-orange-400 hover:bg-orange-500/10 transition-all"

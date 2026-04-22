@@ -207,6 +207,12 @@ export default function HomePage() {
             >
               La Traversée
             </Link>
+            <Link
+              to="/bilan"
+              className="text-[10px] uppercase tracking-widest text-purple-400 hover:text-purple-300 transition-colors font-bold"
+            >
+              Le Bilan
+            </Link>
             <a
               href="mailto:contact@experience-authentik.com"
               className="px-6 py-2 rounded-full border border-cyan-400/30 text-[10px] uppercase tracking-widest text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 transition-all duration-300"
@@ -245,6 +251,13 @@ export default function HomePage() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   La Traversée
+                </Link>
+                <Link
+                  to="/bilan"
+                  className="text-lg font-medium text-purple-400"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Le Bilan Archétypal
                 </Link>
                 <a
                   href="mailto:contact@experience-authentik.com"
@@ -632,6 +645,7 @@ export default function HomePage() {
               <h5 className="font-bold uppercase tracking-widest text-[10px] mb-6 text-slate-500 font-mono">TRAVERSÉES</h5>
               <ul className="space-y-4 text-xs font-light tracking-wide uppercase">
                 <li><Link to="/traversee" className="text-orange-400 hover:text-orange-300 transition-colors font-bold">La Traversée AUTHENTIK</Link></li>
+                <li><Link to="/bilan" className="text-purple-400 hover:text-purple-300 transition-colors font-bold">Le Bilan Archétypal</Link></li>
                 <li><a href="https://www.entreprenezvous.com/quizz" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">Quiz Archétypes</a></li>
                 <li><a href="#" className="text-slate-400 hover:text-white transition-colors">L&apos;Immersion Juin 2026</a></li>
               </ul>

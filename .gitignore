@@ -12,7 +12,13 @@ temp_extract/
 temp_marketing/
 temp_docx_traversee/
 temp_docx_strat/
+temp_forces/
+temp_docx_ev/
+temp_check_ext/
+temp_check/
 
 # Temp zip files
 traversee.zip
 strategie.zip
+temp_ev.zip
+temp_check.zip

@@ -54,7 +54,7 @@
 }
 
 .btn-sleek {
-  @apply px-10 py-4 rounded-lg font-bold transition-transform active:scale-95 cursor-pointer border-none inline-block;
+  @apply px-10 py-4 rounded-lg font-bold transition-transform active:scale-95 cursor-pointer border-none inline-block whitespace-nowrap;
 }
 
 .btn-sleek-primary {

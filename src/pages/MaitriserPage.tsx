@@ -157,7 +157,7 @@ const StatsBar = () => (
 const TransformationPath = () => {
   const steps = [
     {
-      id: "01", title: "L'Assemblée des Cinq Âmes", icon: <Users className="w-6 h-6" />,
+      id: "01", title: "L'Assemblée des Six Âmes", icon: <Users className="w-6 h-6" />,
       desc: "L'alignement de vos forces n'est pas une question de volonté, mais une question d'harmonie écologique. Chaque archétype que vous portez—qu'il soit l'écho de la vision de Jack Dorsey, de l'imaginaire de Miyazaki, ou de l'efficacité clinique de Tim Duncan—porte une intention. Le conflit émerge lorsque ces énergies, faute de direction, entrent en collision ou se neutralisent.",
       image: "/images/assemblee_ames.png",
     },

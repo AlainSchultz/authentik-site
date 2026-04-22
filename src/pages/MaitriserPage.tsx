@@ -84,7 +84,6 @@ const Hero = () => (
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#pricing" className="btn-sleek btn-sleek-primary flex items-center justify-center gap-2">
               Activer ma puissance intérieure
-              <ArrowRight className="w-5 h-5" />
             </a>
           </div>
         </motion.div>
@@ -360,7 +359,7 @@ const Pricing = () => (
             rel="noopener noreferrer"
             className="w-full py-4 rounded-lg border border-brand-orange/30 text-white font-bold hover:bg-brand-orange/10 transition-colors text-center"
           >
-            → Je commande mon Bilan Complet
+            Je commande mon Bilan Complet
           </a>
         </div>
 
@@ -400,7 +399,7 @@ const Pricing = () => (
             rel="noopener noreferrer"
             className="w-full btn-sleek btn-sleek-primary !py-4 text-center"
           >
-            → Je réserve mon Pack Signature
+            Je réserve mon Pack Signature
           </a>
         </div>
       </div>
@@ -615,7 +614,6 @@ export default function MaitriserPage() {
           </h2>
           <a href="#pricing" className="btn-sleek btn-sleek-primary flex items-center gap-3 mx-auto w-fit">
             Maîtriser l'Architecture de mes Forces
-            <ChevronRight className="w-6 h-6" />
           </a>
         </section>
       </main>

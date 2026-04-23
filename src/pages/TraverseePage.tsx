@@ -72,7 +72,7 @@ export default function TraverseePage() {
   useEffect(() => {
     const script = document.createElement('script');
     script.id = 'form-script-tag-23744475';
-    script.src = 'https://www.as.entreprenezvous.com/public/remote/page/40280525ba44536e7a14acf87d0b98d06079f4a4.js';
+    script.src = 'https://www.authentik-experience.com/public/remote/page/40280525ba44536e7a14acf87d0b98d06079f4a4.js';
     script.async = true;
     formContainerRef.current?.appendChild(script);
     return () => { document.getElementById('form-script-tag-23744475')?.remove(); };

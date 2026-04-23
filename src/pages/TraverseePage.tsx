@@ -132,17 +132,17 @@ export default function TraverseePage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-light leading-[1.12] tracking-tight text-white mb-10"
+            className="text-5xl md:text-7xl font-light leading-[1.15] tracking-tight text-white mb-10"
           >
-            Tu as réussi.<br />
-            Et pourtant<br />
-            <span className="gradient-text">quelque chose étouffe.</span>
+            Il manque quelque chose.<br />
+            Tu le sais.<br />
+            <span className="gradient-text">Et personne autour de toi<br />n'a encore les mots pour ça.</span>
           </motion.h1>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            transition={{ duration: 0.6, delay: 0.28 }}
             className="flex items-center gap-8 mb-10"
           >
             <span className="text-[11px] uppercase tracking-[0.25em] text-cyan-400 font-mono">Voir</span>
@@ -155,18 +155,18 @@ export default function TraverseePage() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
+            transition={{ duration: 0.7, delay: 0.38 }}
             className="text-slate-400 text-lg leading-[1.8] max-w-xl mb-14 font-light"
           >
-            Pas une formation. Pas un coaching.<br />
-            Une conversation vraie — à trois — sur ce qui te retient
-            et sur ce que tu pourrais faire si tu étais dans le bon état pour le faire.
+            La Traversée est un cycle de trois rendez-vous gratuits pour les dirigeants
+            qui sentent qu'il manque quelque chose d'essentiel —
+            quelque chose que les formations, les coachings et les lectures n'ont pas touché.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
+            transition={{ duration: 0.6, delay: 0.48 }}
           >
             <a
               href="#formulaire"
@@ -179,7 +179,38 @@ export default function TraverseePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          BLOC 2 — LES 3 RENDEZ-VOUS
+          BLOC 2 — POUR QUI (identification)
+      ══════════════════════════════════════ */}
+      <section id="pour-qui" className="py-28 bg-[#0a0a0a]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto mb-16">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-4">Pour qui</p>
+            <div className="w-12 h-px bg-amber-600/50 mb-7" />
+            <h2 className="text-3xl md:text-5xl font-light text-white leading-[1.2] tracking-tight">
+              Quatre portraits.<br />Tu en reconnaîtras un.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-800/20">
+            {PORTRAITS.map((p) => (
+              <motion.div
+                key={p.bold}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-[#111111] p-11 relative hover:bg-[#141414] transition-colors"
+              >
+                <div className="absolute top-0 left-0 w-8 h-0.5 bg-amber-600" />
+                <p className="text-white text-lg font-normal mb-3 leading-snug">{p.bold}</p>
+                <p className="text-slate-500 text-sm leading-[1.75] font-light">{p.suite}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BLOC 3 — LES 3 RENDEZ-VOUS
       ══════════════════════════════════════ */}
       <section id="rendez-vous" className="py-28 bg-[#111111]">
         <div className="max-w-3xl mx-auto px-6">
@@ -223,37 +254,6 @@ export default function TraverseePage() {
                   </div>
                 )}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          BLOC 3 — POUR QUI
-      ══════════════════════════════════════ */}
-      <section id="pour-qui" className="py-28 bg-[#0a0a0a]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="max-w-3xl mx-auto mb-16">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-4">Pour qui</p>
-            <div className="w-12 h-px bg-amber-600/50 mb-7" />
-            <h2 className="text-3xl md:text-5xl font-light text-white leading-[1.2] tracking-tight">
-              Quatre portraits.<br />Tu en reconnaîtras un.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-800/20">
-            {PORTRAITS.map((p) => (
-              <motion.div
-                key={p.bold}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-[#111111] p-11 relative hover:bg-[#141414] transition-colors"
-              >
-                <div className="absolute top-0 left-0 w-8 h-0.5 bg-amber-600" />
-                <p className="text-white text-lg font-normal mb-3 leading-snug">{p.bold}</p>
-                <p className="text-slate-500 text-sm leading-[1.75] font-light">{p.suite}</p>
-              </motion.div>
             ))}
           </div>
         </div>

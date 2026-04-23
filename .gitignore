@@ -7,17 +7,8 @@ coverage/
 .env*
 !.env.example
 
-# Temp extraction folders
-temp_extract/
-temp_marketing/
-temp_docx_traversee/
-temp_docx_strat/
-temp_forces/
-temp_docx_ev/
-temp_check_ext/
-temp_check/
-
-# Zip files
+# Temp folders & zip archives
+temp_*/
 *.zip
 
 # Marketing docs (fichiers de travail, pas du code)

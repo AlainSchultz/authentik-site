@@ -1,192 +1,82 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import {
-  ArrowLeft,
-  ArrowRight,
-  Eye,
-  Heart,
-  Zap,
-  ChevronDown,
-  Flame,
-  Droplets,
-  Instagram,
-  Linkedin,
-  Newspaper,
-  Mail,
-  MapPin,
-  Users,
-  Calendar,
-  Star
-} from 'lucide-react';
+import { motion } from 'motion/react';
+import { ArrowLeft, Instagram, Linkedin, Newspaper } from 'lucide-react';
 
-const RDV = [
+const RDV_DATA = [
   {
     number: "01",
     verb: "VOIR",
-    subtitle: "Les pôles de gravité et la dissonance",
-    icon: <Eye className="w-10 h-10" />,
-    color: "cyan",
-    borderColor: "border-cyan-500/30",
-    bgColor: "from-cyan-900/20",
-    textColor: "text-cyan-400",
-    image: "⭐",
-    duration: "75 min",
-    description: "Alain entre par l'image cosmique. Une étoile n'est pas une chose stable — c'est un équilibre permanent entre trois forces qui se contredisent. Un dirigeant, c'est exactement ça.",
-    poles: [
-      {
-        name: "La Gravité — Pôle de l'Ancrage",
-        equilibre: "Solidité, profondeur, continuité. Les gens qui t'entourent savent qu'ils peuvent compter sur ce que tu construis.",
-        seul: "Elle fige. La protection devient immobilisme. Tu continues à polir ce qui est déjà bâti au lieu de vivre dans ce que tu as construit."
-      },
-      {
-        name: "La Fusion — Pôle de l'Expansion",
-        equilibre: "Élan, impact, visibilité. Les choses avancent. Les objectifs tombent. L'énergie est contagieuse.",
-        seul: "Elle épuise et disperse. La validation externe devient une drogue dont la dose ne suffit plus jamais."
-      },
-      {
-        name: "La Trajectoire — Pôle de l'Essence",
-        equilibre: "Direction, cohérence, inspiration. Les gens te suivent parce qu'ils sentent que tu sais où tu vas et pourquoi.",
-        seul: "Elle isole. La profondeur devient une tour d'ivoire. L'œuvre est réelle mais personne ne la voit."
-      }
-    ],
-    closing: "Alain conclut avec l'invitation au quiz. Sobre. Sans pitch. Une porte ouverte. \"Dans deux semaines, on ne présentera plus. On travaillera.\""
+    verbColor: "text-cyan-400",
+    tag: "Rendez-vous 1 · 75 min",
+    title: "Les forces qui te gouvernent",
+    body: "Tu n'es pas prisonnier de ta situation. Tu es prisonnier de l'équilibre — ou du déséquilibre — entre trois grandes forces qui t'habitent. On les nomme. On te tend le miroir. Pas pour t'étiqueter — pour que tu voies enfin ce que tu portais sans le voir.",
+    question: "« Est-ce qu'il y a quelque chose que tu as construit — et dans lequel tu ne te reconnais plus vraiment ? »",
+    interval: "· · · 2 semaines d'intervalle · · ·",
   },
   {
     number: "02",
     verb: "SENTIR",
-    subtitle: "Le chaînon manquant — retrouver l'état de justesse",
-    icon: <Heart className="w-10 h-10" />,
-    color: "orange",
-    borderColor: "border-orange-500/30",
-    bgColor: "from-orange-900/20",
-    textColor: "text-orange-400",
-    image: "🌊",
-    duration: "75 min",
-    description: "Vous avez vu votre dissonance. Et pourtant — combien d'entre vous ont continué exactement comme avant ? Ce n'est pas un problème de volonté. C'est un problème de niveau.",
-    poles: [
-      {
-        name: "Pourquoi voir ne suffit pas",
-        equilibre: "Vous essayez de changer vos forces avec les mêmes outils qui ont créé le déséquilibre. Ça ne fonctionne pas.",
-        seul: "Le chaînon manquant n'est pas une action. C'est un état."
-      },
-      {
-        name: "Les histoires vraies — Alain & Éric",
-        equilibre: "Le refus de mutation en Asie. Le road trip qui est devenu une découverte. Le moment précis où il a senti qu'il était enfermé dans sa réussite.",
-        seul: "L'effondrement — l'entreprise, l'argent, la femme, la reconnaissance, le statut. Quinze ans de reconstruction. Pas de raccourci."
-      },
-      {
-        name: "La micro-expérience somatique",
-        equilibre: "Mets une main sur ta poitrine. Pense à une décision récente qui te pèse. Sens ce qui se passe dans ton corps.",
-        seul: "\"La différence que tu viens de sentir — c'est ça, l'état de justesse. Tu ne l'as pas appris. Tu l'as retrouvé.\""
-      }
-    ],
-    closing: "Éric conclut simplement : \"Dans deux semaines — on ose.\""
+    verbColor: "text-orange-400",
+    tag: "Rendez-vous 2 · 75 min",
+    title: "Le chaînon manquant",
+    body: "Voir ne suffit pas. On essaie souvent de changer avec les mêmes outils qui ont créé le déséquilibre. Le chaînon manquant n'est pas une action — c'est un état. On descend plus bas que l'analyse. On retrouve ce qui était là avant que la réussite ne le recouvre.",
+    question: "« Quel est le moment de ta semaine où tu es le plus proche de toi-même — et qu'est-ce que tu fais de ce moment-là ? »",
+    interval: "· · · 2 semaines d'intervalle · · ·",
   },
   {
     number: "03",
     verb: "OSER",
-    subtitle: "Un geste depuis le bon endroit",
-    icon: <Zap className="w-10 h-10" />,
-    color: "purple",
-    borderColor: "border-purple-500/30",
-    bgColor: "from-purple-900/20",
-    textColor: "text-purple-400",
-    image: "🌊",
-    duration: "75 min",
-    description: "Oser — vous savez faire. Vous avez créé une entreprise, pris des risques, traversé des crises. Le problème n'est pas le courage. Le problème est l'endroit depuis lequel vous osez.",
-    poles: [
-      {
-        name: "Oser plus vs oser autrement",
-        equilibre: "Oser depuis la peur — ça ressemble à du courage. Ça épuise comme de la peur.",
-        seul: "Oser depuis la justesse — ça ressemble parfois à de la folie. Ça nourrit comme de la liberté."
-      },
-      {
-        name: "Ce qu'Alain et Éric osent — l'invitation",
-        equilibre: "\"Venez en disant : surprenez-moi. On n'a pas de programme à vous vendre. On a une invitation à vous faire.\"",
-        seul: "En juin. En France. Cinq jours. Un petit groupe. Des gens qui ont fait ce chemin avec nous."
-      },
-      {
-        name: "L'ajustement en direct",
-        equilibre: "\"Est-ce qu'il y a quelqu'un ici qui veut expérimenter ça maintenant ? Pas comprendre. Pas observer. Vivre.\"",
-        seul: "Ce qui se passe ici est imprévisible. C'est exactement pour ça que c'est réel."
-      }
-    ],
-    closing: "Éric conclut. Deux mots. Silence. \"Surprenez-moi.\""
-  }
+    verbColor: "text-purple-400",
+    tag: "Rendez-vous 3 · 75 min",
+    title: "Un geste depuis le bon endroit",
+    body: "Oser — tu sais faire. Tu as créé une entreprise, pris des risques, traversé des crises. Le problème n'est pas le courage. Le problème est l'endroit depuis lequel tu oses. Oser depuis la peur épuise. Oser depuis la justesse nourrit. On travaille ça — en direct.",
+    question: "« Qu'est-ce que tu ferais — si tu étais sûr que c'était depuis le bon endroit ? »",
+    interval: null,
+  },
 ];
 
-const IMMERSION_DAYS = [
+const PORTRAITS = [
   {
-    day: "JOUR 1",
-    verb: "VOIR",
-    title: "La Dissolution",
-    desc: "Quitter le personnage social, arrêter le bruit, voir ce qui reste quand on enlève tout ce qu'on s'est construit."
+    bold: "Tu réussis.",
+    suite: "Et tu as arrêté de te demander si c'est suffisant — parce que la réponse te fait peur.",
   },
   {
-    day: "JOUR 2",
-    verb: "SENTIR",
-    title: "La Confrontation",
-    desc: "Faire face à sa propre dissonance. Apprendre à identifier son signal interne de justesse — et à lui faire confiance."
+    bold: "Tu as tout essayé.",
+    suite: "Les formations, les coachings, les lectures. Et tu sens qu'il manque quelque chose que personne ne nomme.",
   },
   {
-    day: "JOUR 3",
-    verb: "OSER",
-    title: "L'Ancrage",
-    desc: "Définir et sceller le Geste de Rupture concret à ramener dans le quotidien professionnel. Un seul. Le bon."
-  }
+    bold: "Tu avances.",
+    suite: "Mais de moins en moins depuis l'intérieur. Et de plus en plus depuis la pression ou l'habitude.",
+  },
+  {
+    bold: "Tu portes seul.",
+    suite: "Ce que tu ne dis pas à tes équipes, à tes associés, parfois même à toi-même.",
+  },
 ];
 
-const AccordionPole = ({ pole }: { pole: { name: string; equilibre: string; seul: string } }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-slate-800/60">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full py-4 flex justify-between items-center text-left group"
-      >
-        <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors uppercase tracking-wider">{pole.name}</span>
-        <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-300 shrink-0 ml-4 ${open ? 'rotate-180 text-cyan-400' : ''}`} />
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
-          >
-            <div className="pb-5 space-y-3">
-              <div className="flex gap-3">
-                <span className="text-cyan-400 text-[10px] uppercase tracking-widest font-mono shrink-0 pt-0.5">En équilibre</span>
-                <p className="text-slate-400 text-sm leading-relaxed font-light">{pole.equilibre}</p>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-orange-400 text-[10px] uppercase tracking-widest font-mono shrink-0 pt-0.5">Seul</span>
-                <p className="text-slate-400 text-sm leading-relaxed font-light italic">{pole.seul}</p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
+const STATS = [
+  { num: "3", label: "rendez-\nvous", small: false },
+  { num: "75", label: "min\npar séance", small: false },
+  { num: "2", label: "sem.\nentre chaque", small: false },
+  { num: "Gratuit", label: "sans\nengagement", small: true },
+  { num: "En ligne", label: "format\nlive", small: true },
+];
 
 export default function TraverseePage() {
+  const [prenom, setPrenom] = useState('');
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setSubmitted(true);
-    }
+    if (prenom && email) setSubmitted(true);
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 selection:bg-orange-500/30">
-      {/* Navigation */}
+    <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-orange-500/30">
+
+      {/* ── Navigation ── */}
       <nav className="fixed w-full z-50 py-5 glass border-b border-slate-800/50">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
@@ -197,344 +87,337 @@ export default function TraverseePage() {
             <div className="w-8 h-8 bg-gradient-to-tr from-orange-500 to-cyan-500 rounded-full flex items-center justify-center font-bold text-white text-sm group-hover:scale-110 transition-transform">A</div>
             <span className="text-xl font-bold tracking-tighter text-white">AUTHENTIK</span>
           </Link>
-          <Link
-            to="/bilan"
-            className="hidden md:block text-[10px] uppercase tracking-widest text-purple-400 hover:text-purple-300 transition-colors font-bold"
-          >
-            Le Bilan
-          </Link>
           <a
-            href="mailto:contact@experience-authentik.com"
-            className="px-5 py-2 rounded-full border border-orange-500/30 text-[10px] uppercase tracking-widest text-orange-400 hover:bg-orange-500/10 transition-all"
+            href="#formulaire"
+            className="px-5 py-2.5 bg-gradient-to-r from-orange-600 to-orange-400 text-[10px] uppercase tracking-widest text-white font-bold hover:scale-105 transition-transform"
           >
-            Manifester mon intérêt
+            Je rejoins la Traversée
           </a>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* ══════════════════════════════════════
+          BLOC 1 — HERO
+      ══════════════════════════════════════ */}
+      <section className="relative min-h-screen flex items-center pt-28 pb-24 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-500/8 rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[80px]" />
+          <div className="absolute top-0 right-1/3 w-[600px] h-[600px] bg-amber-600/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/6 rounded-full blur-[110px]" />
         </div>
 
-        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+        <div className="max-w-3xl mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-5 mb-14"
           >
-            <div className="inline-flex items-center gap-4 px-4 py-2 bg-slate-900/60 rounded-full border border-slate-700 mb-10">
-              <span className="text-[9px] uppercase tracking-[0.3em] text-cyan-400 font-mono">La Semaine AUTHENTIK</span>
-              <span className="w-1 h-1 bg-slate-600 rounded-full" />
-              <span className="text-[9px] uppercase tracking-[0.3em] text-slate-500 font-mono">12 · 13 · 14 Mai 2026</span>
-            </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-6xl md:text-9xl font-black mb-6 tracking-tighter text-white uppercase leading-none"
-          >
-            La<br />
-            <span className="gradient-text">Traversée</span>
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex items-center justify-center gap-6 mb-10"
-          >
-            <span className="text-[11px] uppercase tracking-[0.4em] text-cyan-400 font-mono">VOIR</span>
-            <span className="text-slate-600">·</span>
-            <span className="text-[11px] uppercase tracking-[0.4em] text-orange-400 font-mono">SENTIR</span>
-            <span className="text-slate-600">·</span>
-            <span className="text-[11px] uppercase tracking-[0.4em] text-purple-400 font-mono">OSER</span>
+            <span className="text-[11px] uppercase tracking-[0.22em] text-amber-500 font-bold">Gratuit</span>
+            <span className="text-slate-700">·</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500">3 rendez-vous</span>
+            <span className="text-slate-700">·</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500">En ligne</span>
           </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed font-light mb-12"
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-6"
           >
-            Un cycle de trois rendez-vous espacés de deux semaines. Ce n'est pas un programme structuré — c'est un chemin progressif, du visible vers le ressenti, du ressenti vers l'acte.
+            La Traversée
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-light leading-[1.12] tracking-tight text-white mb-10"
+          >
+            Tu as réussi.<br />
+            Et pourtant<br />
+            <span className="gradient-text">quelque chose étouffe.</span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="flex items-center gap-8 mb-10"
+          >
+            <span className="text-[11px] uppercase tracking-[0.25em] text-cyan-400 font-mono">Voir</span>
+            <div className="w-px h-6 bg-slate-800" />
+            <span className="text-[11px] uppercase tracking-[0.25em] text-orange-400 font-mono">Sentir</span>
+            <div className="w-px h-6 bg-slate-800" />
+            <span className="text-[11px] uppercase tracking-[0.25em] text-purple-400 font-mono">Oser</span>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="text-slate-400 text-lg leading-[1.8] max-w-xl mb-14 font-light"
+          >
+            Pas une formation. Pas un coaching.<br />
+            Une conversation vraie — à trois — sur ce qui te retient
+            et sur ce que tu pourrais faire si tu étais dans le bon état pour le faire.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.6, delay: 0.45 }}
           >
             <a
-              href="#rdv"
-              className="px-10 py-5 rounded-2xl bg-gradient-to-r from-orange-600 to-orange-400 text-white font-bold text-base shadow-[0_0_40px_rgba(234,88,12,0.25)] hover:scale-105 transition-transform flex items-center gap-3 justify-center"
+              href="#formulaire"
+              className="inline-block px-12 py-5 bg-gradient-to-r from-orange-600 to-orange-400 text-white font-bold text-[12px] uppercase tracking-[0.18em] shadow-[0_0_40px_rgba(234,88,12,0.25)] hover:scale-105 transition-transform"
             >
-              Découvrir les 3 rendez-vous
-              <ArrowRight className="w-5 h-5" />
-            </a>
-            <a
-              href="#immersion"
-              className="px-10 py-5 rounded-2xl bg-slate-900 border border-slate-700 text-white font-medium hover:bg-slate-800 transition-colors text-[11px] uppercase tracking-widest text-center"
-            >
-              L'Immersion Juin 2026
+              Je rejoins la Traversée ↗
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Architecture badge */}
-      <section className="py-20 bg-slate-950 border-y border-slate-800/50">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            {[
-              { icon: <Calendar className="w-6 h-6 text-cyan-400 mx-auto mb-4" />, label: "3 Rendez-vous", sub: "Espacés de 2 semaines" },
-              { icon: <Users className="w-6 h-6 text-orange-400 mx-auto mb-4" />, label: "Le Duo complet", sub: "Alain & Éric dès le 1er RDV" },
-              { icon: <Star className="w-6 h-6 text-purple-400 mx-auto mb-4" />, label: "75 minutes", sub: "Par rendez-vous" },
-            ].map((item) => (
-              <div key={item.label} className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800">
-                {item.icon}
-                <div className="text-xl font-black text-white uppercase tracking-tight mb-1">{item.label}</div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest font-mono">{item.sub}</div>
+      {/* ══════════════════════════════════════
+          BLOC 2 — LES 3 RENDEZ-VOUS
+      ══════════════════════════════════════ */}
+      <section id="rendez-vous" className="py-28 bg-[#111111]">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-4">Les trois rendez-vous</p>
+            <div className="w-12 h-px bg-amber-600/50 mx-auto mb-7" />
+            <h2 className="text-3xl md:text-5xl font-light text-white leading-[1.2] tracking-tight">
+              Un cycle de 75 minutes<br />qui va plus loin que l'analyse
+            </h2>
+          </div>
+
+          <div>
+            {RDV_DATA.map((rdv, idx) => (
+              <div key={rdv.number}>
+                <motion.div
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="py-16 border-b border-slate-800/50 grid grid-cols-[72px_1fr] gap-10 items-start"
+                >
+                  <div>
+                    <div className="text-4xl font-light text-slate-800 font-serif leading-none mb-1">{rdv.number}</div>
+                    <div className={`text-[10px] uppercase tracking-[0.2em] font-mono ${rdv.verbColor}`}>RDV</div>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.25em] font-mono text-slate-600 mb-3">{rdv.tag}</p>
+                    <h3 className="text-2xl font-light text-white mb-5 leading-snug">
+                      <span className={rdv.verbColor}>{rdv.verb}</span> — {rdv.title}
+                    </h3>
+                    <p className="text-slate-400 text-[0.97rem] leading-[1.85] mb-7 font-light">{rdv.body}</p>
+                    <blockquote className="border-l-2 border-amber-600/40 pl-6 py-2 text-slate-300 italic text-[0.95rem] leading-[1.7]">
+                      {rdv.question}
+                    </blockquote>
+                  </div>
+                </motion.div>
+
+                {rdv.interval && (
+                  <div className="text-center py-8 text-[10px] uppercase tracking-[0.3em] text-slate-700 font-mono">
+                    {rdv.interval}
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3 Rendez-vous */}
-      <section id="rdv" className="py-32 bg-[#020617]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-24">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-mono mb-4 block">Architecture de la Traversée</span>
-            <h2 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tighter mb-6">
-              Trois rendez-vous.<br />
-              <span className="gradient-text font-normal italic">Un chemin progressif.</span>
+      {/* ══════════════════════════════════════
+          BLOC 3 — POUR QUI
+      ══════════════════════════════════════ */}
+      <section id="pour-qui" className="py-28 bg-[#0a0a0a]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto mb-16">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-4">Pour qui</p>
+            <div className="w-12 h-px bg-amber-600/50 mb-7" />
+            <h2 className="text-3xl md:text-5xl font-light text-white leading-[1.2] tracking-tight">
+              Quatre portraits.<br />Tu en reconnaîtras un.
             </h2>
           </div>
 
-          <div className="space-y-12">
-            {RDV.map((rdv, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-800/20">
+            {PORTRAITS.map((p) => (
               <motion.div
-                key={rdv.number}
-                initial={{ opacity: 0, y: 40 }}
+                key={p.bold}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.15 }}
                 viewport={{ once: true }}
-                className={`rounded-3xl bg-slate-900/50 border ${rdv.borderColor} overflow-hidden`}
+                className="bg-[#111111] p-11 relative hover:bg-[#141414] transition-colors"
               >
-                <div className="grid md:grid-cols-5">
-                  {/* Left panel */}
-                  <div className={`md:col-span-2 p-10 bg-gradient-to-b ${rdv.bgColor} to-transparent flex flex-col justify-between`}>
-                    <div>
-                      <div className={`inline-flex items-center gap-3 mb-6 ${rdv.textColor}`}>
-                        {rdv.icon}
-                        <div>
-                          <div className="text-[9px] uppercase tracking-[0.4em] font-mono opacity-60">Rendez-vous {rdv.number}</div>
-                          <div className="text-3xl font-black uppercase tracking-widest">{rdv.verb}</div>
-                        </div>
-                      </div>
-                      <p className="text-slate-500 text-[10px] uppercase tracking-widest font-mono mb-6">{rdv.subtitle}</p>
-                      <p className="text-slate-300 leading-relaxed font-light">{rdv.description}</p>
-                    </div>
-                    <div className={`mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border ${rdv.borderColor} w-fit`}>
-                      <span className={`text-[9px] uppercase tracking-[0.3em] font-mono ${rdv.textColor}`}>{rdv.duration}</span>
-                    </div>
-                  </div>
-
-                  {/* Right panel */}
-                  <div className="md:col-span-3 p-10 border-l border-slate-800/50">
-                    <div className="text-[9px] uppercase tracking-[0.3em] font-mono text-slate-600 mb-6">Ce qui se passe</div>
-                    <div className="space-y-1">
-                      {rdv.poles.map((pole) => (
-                        <AccordionPole key={pole.name} pole={pole} />
-                      ))}
-                    </div>
-                    <div className="mt-8 p-5 rounded-xl bg-slate-950/60 border border-slate-800">
-                      <p className="text-slate-500 text-sm italic font-light leading-relaxed">{rdv.closing}</p>
-                    </div>
-                  </div>
-                </div>
+                <div className="absolute top-0 left-0 w-8 h-0.5 bg-amber-600" />
+                <p className="text-white text-lg font-normal mb-3 leading-snug">{p.bold}</p>
+                <p className="text-slate-500 text-sm leading-[1.75] font-light">{p.suite}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Protocole d'incubation */}
-      <section className="py-24 bg-slate-950 border-y border-slate-800/50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-mono mb-6 block">Le Protocole d'Incubation</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-tighter mb-8">
-            Anti-marketing<br /><span className="gradient-text italic font-normal">toxique.</span>
-          </h2>
-          <p className="text-slate-400 text-lg leading-relaxed font-light max-w-2xl mx-auto mb-12">
-            À la fin du 3ème rendez-vous, aucun lien de vente n'est fourni. Nous fermons les accès 48h. Parce que nous ne voulons pas de votre impulsion. Nous voulons votre clarté.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 text-left">
-            {[
-              {
-                step: "01",
-                title: "Le Silence — Jeudi 14 Mai",
-                desc: "Fin du RDV 3. Aucun lien, aucune urgence. Un simple formulaire pour manifester votre intérêt si ça résonne.",
-                color: "text-cyan-400"
-              },
-              {
-                step: "02",
-                title: "L'Ouverture — Samedi 16 Mai",
-                desc: "Un email pour ceux qui ont manifesté leur intérêt. Pas de paiement — un lien pour un appel de 15 minutes avec Alain ou Éric.",
-                color: "text-orange-400"
-              }
-            ].map((item) => (
-              <div key={item.step} className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800">
-                <div className={`text-xs font-mono ${item.color} uppercase tracking-widest mb-3`}>Étape {item.step}</div>
-                <h3 className="text-lg font-bold text-white uppercase tracking-tighter mb-3">{item.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed font-light">{item.desc}</p>
+      {/* ══════════════════════════════════════
+          BLOC 4 — ALAIN & ÉRIC
+      ══════════════════════════════════════ */}
+      <section id="avec-qui" className="py-28 bg-[#111111]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto mb-16">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-4">Avec qui</p>
+            <div className="w-12 h-px bg-amber-600/50 mb-7" />
+            <h2 className="text-3xl md:text-5xl font-light text-white leading-[1.2] tracking-tight">
+              Deux voix. Une tension créatrice.<br />
+              <span className="text-slate-500 text-3xl md:text-4xl">Pas une méthode — une présence.</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-px bg-slate-800/20">
+            <div className="bg-[#111111] p-14">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-black font-bold text-lg mb-7">A</div>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-amber-500 mb-4 font-mono">Fondateur · Leaders Vivants & AUTHENTIK</p>
+              <h3 className="text-2xl font-light text-white mb-5">Alain</h3>
+              <p className="text-slate-400 text-sm leading-[1.85] font-light">
+                Il a refusé sa mutation, traversé l'Asie, et compris qu'il était enfermé dans sa réussite. Son parcours — du succès qui étouffe à la vie qui rayonne — est le fil conducteur d'AUTHENTIK.
+              </p>
+            </div>
+            <div className="bg-[#1a1a1a] p-14">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-400 flex items-center justify-center text-black font-bold text-lg mb-7">É</div>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-400 mb-4 font-mono">Co-fondateur AUTHENTIK · Podcast "C'est Alain qui m'a dit"</p>
+              <h3 className="text-2xl font-light text-white mb-5">Éric</h3>
+              <p className="text-slate-400 text-sm leading-[1.85] font-light">
+                Il a tout perdu pour ne pas avoir écouté le signal. Quinze ans de reconstruction — jusqu'au jour où il a compris que ce signal ignoré était son état de justesse qui tentait de parler.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BLOC 5 — INFOS PRATIQUES
+      ══════════════════════════════════════ */}
+      <section id="infos" className="py-20 bg-[#0a0a0a]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500">Informations pratiques</p>
+            <div className="w-12 h-px bg-amber-600/50 mx-auto mt-4" />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-slate-800/20">
+            {STATS.map((s) => (
+              <div key={s.num} className="bg-[#111111] py-11 px-7 text-center">
+                <div className={`${s.small ? 'text-2xl' : 'text-5xl'} font-light text-amber-500 leading-none mb-3 font-serif`}>
+                  {s.num}
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-600 font-mono whitespace-pre-line leading-[1.5]">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* L'Immersion */}
-      <section id="immersion" className="py-32 bg-[#020617] relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[100px]" />
-        </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
-            <div>
-              <span className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-mono mb-6 block">Après la Traversée</span>
-              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-6 leading-none">
-                L'Immersion<br />
-                <span className="gradient-text font-normal italic">Juin 2026</span>
-              </h2>
-              <p className="text-slate-400 text-lg leading-relaxed font-light mb-8 italic border-l-2 border-orange-500/30 pl-6">
-                "Un dauphin en captivité survit. Un dauphin dans l'océan rayonne. Vous venez de passer six semaines à retrouver votre océan. L'immersion — c'est y plonger pour de vrai."
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-10">
-                {[
-                  { icon: <MapPin className="w-4 h-4" />, label: "Lieu", value: "France" },
-                  { icon: <Calendar className="w-4 h-4" />, label: "Dates", value: "16-18 Juin 2026" },
-                  { icon: <Users className="w-4 h-4" />, label: "Groupe", value: "5 participants max" },
-                  { icon: <Star className="w-4 h-4" />, label: "Engagement", value: "3 000 €" },
-                ].map((item) => (
-                  <div key={item.label} className="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
-                    <div className="flex items-center gap-2 text-slate-500 mb-2">{item.icon}<span className="text-[9px] uppercase tracking-widest font-mono">{item.label}</span></div>
-                    <div className="text-white font-bold text-sm">{item.value}</div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-[10px] text-slate-600 font-mono uppercase tracking-widest">Tout inclus · Hors transport · Validation après appel de 15 min</p>
-            </div>
-
-            <div className="space-y-6">
-              {IMMERSION_DAYS.map((day, idx) => (
-                <motion.div
-                  key={day.day}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.15 }}
-                  viewport={{ once: true }}
-                  className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all"
-                >
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center shrink-0">
-                      <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">{idx + 1}</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-[9px] uppercase tracking-[0.3em] font-mono text-slate-600">{day.day}</span>
-                        <span className="text-[9px] uppercase tracking-[0.3em] font-mono text-orange-400">· {day.verb} ·</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-white uppercase tracking-tighter mb-2">{day.title}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed font-light">{day.desc}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA — Manifester son intérêt */}
-      <section className="py-32 bg-slate-950 border-y border-slate-800/50">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <span className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-mono mb-6 block">Sélection mutuelle</span>
-          <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
-            Surprenez<br />
-            <span className="gradient-text font-normal italic">-moi.</span>
+      {/* ══════════════════════════════════════
+          BLOC 6 — FORMULAIRE
+      ══════════════════════════════════════ */}
+      <section id="formulaire" className="py-28 bg-[#141414]">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-amber-500 mb-4">Je rejoins la Traversée</p>
+          <div className="w-12 h-px bg-amber-600/50 mx-auto mb-8" />
+          <h2 className="text-3xl md:text-5xl font-light text-white leading-[1.2] tracking-tight mb-4">
+            Inscris-toi gratuitement.
           </h2>
-          <p className="text-slate-400 text-lg leading-relaxed font-light mb-12 max-w-xl mx-auto">
-            On ne vous demande pas de décider ce soir. On vous demande juste d'écouter ce que vous sentez — pas ce que vous pensez. Et si ça résonne — laissez votre email.
+          <p className="text-slate-400 text-base leading-[1.8] mb-12 font-light">
+            Tu recevras les dates et le lien de connexion par email<br />
+            avant le premier rendez-vous.
           </p>
 
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <div className="relative flex-1">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <form onSubmit={handleSubmit} className="space-y-6 text-left">
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-500 mb-3 font-mono">
+                  Prénom
+                </label>
+                <input
+                  type="text"
+                  value={prenom}
+                  onChange={(e) => setPrenom(e.target.value)}
+                  placeholder="Ton prénom"
+                  required
+                  className="w-full bg-transparent border-b border-slate-700 pb-4 text-white placeholder-slate-700 focus:outline-none focus:border-amber-600/60 transition-colors font-light text-base"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-500 mb-3 font-mono">
+                  Email
+                </label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="votre@email.com"
+                  placeholder="ton@email.com"
                   required
-                  className="w-full pl-11 pr-4 py-4 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-orange-500/50 transition-colors text-sm"
+                  className="w-full bg-transparent border-b border-slate-700 pb-4 text-white placeholder-slate-700 focus:outline-none focus:border-amber-600/60 transition-colors font-light text-base"
                 />
               </div>
-              <button
-                type="submit"
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-orange-600 to-orange-400 text-white font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(234,88,12,0.2)] whitespace-nowrap"
-              >
-                Je manifeste mon intérêt
-              </button>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full py-5 bg-gradient-to-r from-orange-600 to-orange-400 text-white font-bold text-[12px] uppercase tracking-[0.18em] shadow-[0_0_40px_rgba(234,88,12,0.2)] hover:scale-[1.02] transition-transform"
+                >
+                  Je rejoins la Traversée ↗
+                </button>
+              </div>
             </form>
           ) : (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="p-8 rounded-2xl bg-slate-900/60 border border-orange-500/20 max-w-md mx-auto"
+              className="p-10 bg-[#1a1a1a] border border-amber-600/20 text-center"
             >
-              <div className="text-3xl mb-4">✦</div>
-              <h3 className="text-xl font-bold text-white uppercase tracking-tighter mb-2">Signal reçu.</h3>
+              <div className="text-amber-500 text-3xl mb-5">✦</div>
+              <h3 className="text-xl font-light text-white mb-3 uppercase tracking-tight">Inscription reçue.</h3>
               <p className="text-slate-400 text-sm font-light leading-relaxed">
-                Nous vous contacterons le samedi 16 mai à 10h00 pour un échange de 15 minutes avec Alain ou Éric. Pas de vente — un dialogue.
+                Tu recevras les dates et le lien de connexion<br />par email avant le premier rendez-vous.
               </p>
             </motion.div>
           )}
 
-          <p className="text-[10px] text-slate-600 font-mono uppercase tracking-widest mt-6">
-            Ou écrivez directement à <a href="mailto:contact@experience-authentik.com" className="text-slate-400 hover:text-white transition-colors">contact@experience-authentik.com</a>
+          <p className="text-[11px] text-slate-700 mt-8 font-mono leading-relaxed">
+            Aucun spam. Juste les informations essentielles.<br />
+            Tu peux te désinscrire à tout moment.
           </p>
         </div>
       </section>
 
-      {/* Quote finale */}
-      <section className="py-40 bg-[#020617] relative overflow-hidden">
+      {/* ══════════════════════════════════════
+          BLOC 7 — CITATION DE CLÔTURE
+      ══════════════════════════════════════ */}
+      <section className="py-36 bg-[#0a0a0a] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/4 rounded-full blur-[150px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-orange-500/4 rounded-full blur-[140px]" />
         </div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-3xl md:text-5xl font-light leading-relaxed italic text-slate-300 mb-12">
-            "Ce que tu viens de sentir — ce n&apos;est pas un diagnostic.<br />
-            C&apos;est une première <span className="gradient-text not-italic font-bold">lumière</span>."
-          </p>
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-sm">💧</div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-mono">Alain & Éric</span>
-            <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-sm">🔥</div>
-          </div>
+        <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
+          <div className="w-12 h-px bg-amber-600/30 mx-auto mb-14" />
+          <blockquote className="text-2xl md:text-[1.55rem] font-light leading-[1.65] italic text-slate-300 mb-10">
+            "Un dauphin en captivité survit.<br />
+            Un dauphin dans l'océan rayonne.<br />
+            <span className="gradient-text not-italic font-normal">La Traversée — c'est retrouver ton océan.</span>"
+          </blockquote>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-slate-600 font-mono mb-14">— Alain & Éric</p>
+          <div className="w-12 h-px bg-amber-600/30 mx-auto mb-14" />
+          <a
+            href="#formulaire"
+            className="inline-block px-12 py-5 border border-amber-600/40 text-amber-500 font-bold text-[12px] uppercase tracking-[0.18em] hover:bg-amber-600/8 transition-colors"
+          >
+            Je rejoins la Traversée ↗
+          </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 bg-[#020617] border-t border-slate-800/50">
+      {/* ── Footer ── */}
+      <footer className="py-16 bg-[#0a0a0a] border-t border-slate-800/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
             <div>
@@ -555,9 +438,9 @@ export default function TraverseePage() {
               <div>
                 <h5 className="font-bold uppercase tracking-widest text-[10px] mb-5 text-slate-500 font-mono">La Traversée</h5>
                 <ul className="space-y-3 text-xs font-light uppercase tracking-wide">
-                  <li><a href="#rdv" className="text-slate-400 hover:text-white transition-colors">Les 3 Rendez-vous</a></li>
-                  <li><a href="#immersion" className="text-slate-400 hover:text-white transition-colors">L'Immersion Juin</a></li>
-                  <li><a href="https://www.entreprenezvous.com/quizz" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">Quiz Archétypes</a></li>
+                  <li><a href="#rendez-vous" className="text-slate-400 hover:text-white transition-colors">Les 3 Rendez-vous</a></li>
+                  <li><a href="#pour-qui" className="text-slate-400 hover:text-white transition-colors">Pour qui</a></li>
+                  <li><a href="#formulaire" className="text-slate-400 hover:text-white transition-colors">S'inscrire</a></li>
                 </ul>
               </div>
               <div>
@@ -571,8 +454,8 @@ export default function TraverseePage() {
               <div>
                 <h5 className="font-bold uppercase tracking-widest text-[10px] mb-5 text-slate-500 font-mono">Contact</h5>
                 <ul className="space-y-3 text-xs font-light">
-                  <li className="text-slate-500 uppercase tracking-widest">Genève · Paris · Montréal</li>
-                  <li><a href="mailto:contact@experience-authentik.com" className="text-slate-300 hover:text-cyan-400 transition-colors">contact@experience-authentik.com</a></li>
+                  <li className="text-slate-500 uppercase tracking-widest text-[10px]">Genève · Paris · Montréal</li>
+                  <li><a href="mailto:contact@experience-authentik.com" className="text-slate-300 hover:text-cyan-400 transition-colors text-xs">contact@experience-authentik.com</a></li>
                 </ul>
               </div>
             </div>

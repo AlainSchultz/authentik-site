@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Instagram, Linkedin, Newspaper } from 'lucide-react';
@@ -67,14 +67,16 @@ const STATS = [
 ];
 
 export default function TraverseePage() {
-  const [prenom, setPrenom] = useState('');
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const formContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (prenom && email) setSubmitted(true);
-  };
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.id = 'form-script-tag-23744475';
+    script.src = 'https://www.as.entreprenezvous.com/public/remote/page/40280525ba44536e7a14acf87d0b98d06079f4a4.js';
+    script.async = true;
+    formContainerRef.current?.appendChild(script);
+    return () => { document.getElementById('form-script-tag-23744475')?.remove(); };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-orange-500/30">
@@ -370,61 +372,7 @@ export default function TraverseePage() {
             avant le premier rendez-vous.
           </p>
 
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="space-y-6 text-left">
-              <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-500 mb-3 font-mono">
-                  Prénom
-                </label>
-                <input
-                  type="text"
-                  value={prenom}
-                  onChange={(e) => setPrenom(e.target.value)}
-                  placeholder="Ton prénom"
-                  required
-                  className="w-full bg-transparent border-b border-slate-700 pb-4 text-white placeholder-slate-700 focus:outline-none focus:border-amber-600/60 transition-colors font-light font-sans text-base"
-                />
-              </div>
-              <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-500 mb-3 font-mono">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ton@email.com"
-                  required
-                  className="w-full bg-transparent border-b border-slate-700 pb-4 text-white placeholder-slate-700 focus:outline-none focus:border-amber-600/60 transition-colors font-light font-sans text-base"
-                />
-              </div>
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full py-5 bg-gradient-to-r from-orange-600 to-orange-400 text-white font-bold font-mono text-[12px] uppercase tracking-[0.18em] shadow-[0_0_40px_rgba(234,88,12,0.2)] hover:scale-[1.02] transition-transform"
-                >
-                  Je rejoins la Traversée ↗
-                </button>
-              </div>
-            </form>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="p-10 bg-[#1a1a1a] border border-amber-600/20 text-center"
-            >
-              <div className="text-amber-500 text-3xl mb-5">✦</div>
-              <h3 className="text-xl font-serif font-light text-white mb-3 uppercase tracking-tight">Inscription reçue.</h3>
-              <p className="text-slate-400 text-sm font-light font-sans leading-relaxed">
-                Tu recevras les dates et le lien de connexion<br />par email avant le premier rendez-vous.
-              </p>
-            </motion.div>
-          )}
-
-          <p className="text-[11px] text-slate-700 mt-8 font-mono leading-relaxed">
-            Aucun spam. Juste les informations essentielles.<br />
-            Tu peux te désinscrire à tout moment.
-          </p>
+          <div ref={formContainerRef} className="w-full" />
         </div>
       </section>
 

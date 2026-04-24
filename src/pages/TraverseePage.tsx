@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Instagram, Linkedin, Newspaper } from 'lucide-react';
+import { ArrowLeft, Instagram, Linkedin, Newspaper, Menu, X } from 'lucide-react';
 
 const RDV_DATA = [
   {
@@ -67,6 +67,7 @@ const STATS = [
 ];
 
 export default function TraverseePage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const formContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,23 +83,43 @@ export default function TraverseePage() {
     <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-orange-500/30">
 
       {/* ── Navigation ── */}
-      <nav className="fixed w-full z-50 py-5 glass border-b border-slate-800/50">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[10px] uppercase tracking-widest font-mono">Retour</span>
-          </Link>
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-gradient-to-tr from-orange-500 to-cyan-500 rounded-full flex items-center justify-center font-bold text-white text-sm group-hover:scale-110 transition-transform">A</div>
-            <span className="text-xl font-bold tracking-tighter text-white font-sans">AUTHENTIK</span>
-          </Link>
-          <a
-            href="#formulaire"
-            className="px-5 py-2.5 bg-gradient-to-r from-orange-600 to-orange-400 text-[10px] uppercase tracking-widest text-white font-bold font-mono hover:scale-105 transition-transform"
-          >
-            Je rejoins la Traversée
-          </a>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-card/80 backdrop-blur-md border-b border-white/10 h-[60px] flex items-center">
+        <div className="max-w-7xl mx-auto px-10 w-full">
+          <div className="flex justify-between items-center">
+            <Link to="/" className="flex items-center gap-3 text-brand-text-dim hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="font-display font-extrabold text-xl tracking-tighter text-gradient-primary">AUTHENTIK.</span>
+            </Link>
+
+            <div className="hidden md:flex items-center gap-6">
+              <a href="#pour-qui"    className="text-[0.85rem] font-bold text-brand-text-dim hover:text-white transition-colors uppercase tracking-wider">Pour qui</a>
+              <a href="#rendez-vous" className="text-[0.85rem] font-bold text-brand-text-dim hover:text-white transition-colors uppercase tracking-wider">Les RDVs</a>
+              <a href="#avec-qui"    className="text-[0.85rem] font-bold text-brand-text-dim hover:text-white transition-colors uppercase tracking-wider">Alain & Éric</a>
+              <a href="#formulaire"  className="btn-sleek btn-sleek-primary !px-4 !py-2 !text-[0.75rem] uppercase">
+                Je rejoins la Traversée
+              </a>
+            </div>
+
+            <button className="md:hidden text-brand-text-dim" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
+
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden absolute top-[60px] left-0 right-0 bg-brand-card border-b border-white/10 px-10 py-6 space-y-4"
+          >
+            <a href="#pour-qui"    className="block text-sm font-bold text-brand-text-dim uppercase tracking-wider" onClick={() => setMenuOpen(false)}>Pour qui</a>
+            <a href="#rendez-vous" className="block text-sm font-bold text-brand-text-dim uppercase tracking-wider" onClick={() => setMenuOpen(false)}>Les RDVs</a>
+            <a href="#avec-qui"    className="block text-sm font-bold text-brand-text-dim uppercase tracking-wider" onClick={() => setMenuOpen(false)}>Alain & Éric</a>
+            <a href="#formulaire"  className="block w-full text-center btn-sleek btn-sleek-primary uppercase" onClick={() => setMenuOpen(false)}>
+              Je rejoins la Traversée
+            </a>
+          </motion.div>
+        )}
       </nav>
 
       {/* ══════════════════════════════════════

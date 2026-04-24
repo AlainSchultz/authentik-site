@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { ArrowLeft, Instagram, Linkedin, Newspaper, Menu, X } from 'lucide-react';
 
@@ -80,6 +81,20 @@ export default function TraverseePage() {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>Coaching Dirigeants Gratuit — La Traversée | AUTHENTIK</title>
+      <meta name="description" content="3 rendez-vous gratuits de 75 min pour les leaders qui sentent qu'il manque quelque chose d'essentiel. Voir · Sentir · Oser — avec Alain et Éric. Inscription en ligne." />
+      <link rel="canonical" href="https://experience-authentik.com/traversee" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="AUTHENTIK" />
+      <meta property="og:title" content="La Traversée — 3 Séances Coaching Gratuites | AUTHENTIK" />
+      <meta property="og:description" content="3 rendez-vous gratuits de 75 min pour les leaders qui sentent qu'il manque quelque chose d'essentiel." />
+      <meta property="og:url" content="https://experience-authentik.com/traversee" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="La Traversée — 3 Séances Coaching Gratuites | AUTHENTIK" />
+      <meta name="twitter:description" content="3 rendez-vous gratuits de 75 min pour les leaders qui sentent qu'il manque quelque chose d'essentiel." />
+    </Helmet>
     <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-orange-500/30">
 
       {/* ── Navigation ── */}
@@ -476,5 +491,6 @@ export default function TraverseePage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

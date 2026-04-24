@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://experience-authentik.com/sitemap.xml

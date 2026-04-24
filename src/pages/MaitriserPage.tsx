@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Helmet } from 'react-helmet-async';
 import {
   ArrowRight,
   ArrowLeft,
@@ -576,6 +577,20 @@ const Dualite = () => (
 
 export default function MaitriserPage() {
   return (
+    <>
+    <Helmet>
+      <title>Bilan Coaching Personnalisé — 79€ | AUTHENTIK</title>
+      <meta name="description" content="Un document de 3 500 mots personnalisé sur votre profil archétypal : forces, blocages, croyances limitantes et feuille de route 90 jours. Dès 79€ — livré sous 72h." />
+      <link rel="canonical" href="https://experience-authentik.com/bilan" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="AUTHENTIK" />
+      <meta property="og:title" content="Bilan Archétypal Personnalisé — AUTHENTIK" />
+      <meta property="og:description" content="Analyse sur mesure de vos forces, blocages et croyances limitantes. Feuille de route 90 jours. Dès 79€." />
+      <meta property="og:url" content="https://experience-authentik.com/bilan" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Bilan Archétypal Personnalisé — AUTHENTIK" />
+      <meta name="twitter:description" content="Analyse sur mesure de vos forces, blocages et croyances limitantes. Dès 79€." />
+    </Helmet>
     <div className="min-h-screen font-display bg-brand-bg">
       <Navbar />
       <main>
@@ -630,5 +645,6 @@ export default function MaitriserPage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -182,6 +183,20 @@ export default function HomePage() {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>AUTHENTIK — Coaching de Vie pour Dirigeants</title>
+      <meta name="description" content="AUTHENTIK accompagne les leaders qui ont tout réussi mais qui ont perdu leur élan vital. 3 séances gratuites ou bilan archétypal personnalisé. Genève · Paris · Montréal." />
+      <link rel="canonical" href="https://experience-authentik.com/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="AUTHENTIK" />
+      <meta property="og:title" content="AUTHENTIK — Coaching de Vie pour Dirigeants" />
+      <meta property="og:description" content="Pour les leaders qui ont tout réussi mais qui ont perdu leur feu. 3 séances gratuites ou bilan archétypal sur mesure." />
+      <meta property="og:url" content="https://experience-authentik.com/" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="AUTHENTIK — Coaching de Vie pour Dirigeants" />
+      <meta name="twitter:description" content="Pour les leaders qui ont tout réussi mais qui ont perdu leur feu." />
+    </Helmet>
     <div className="min-h-screen selection:bg-orange-500/30 bg-[#020617] text-slate-200">
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'py-4 glass border-slate-800/50' : 'py-8 border-transparent'}`}>
@@ -670,5 +685,6 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

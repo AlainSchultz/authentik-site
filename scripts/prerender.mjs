@@ -39,23 +39,17 @@ async function prerender() {
   console.log('\n🖨️  Pré-rendu des routes...');
 
   for (const url of routes) {
-    const { html: appHtml, helmet } = render(url);
+    const { html: appHtml } = render(url);
 
-    // Injection du HTML dans le placeholder
-    let page = template.replace('<!--app-html-->', appHtml);
+    // react-helmet-async v3 SSR rend les balises head en tête du HTML du composant,
+    // avant le premier <div. On les extrait pour les placer dans le vrai <head>.
+    const firstDivIdx = appHtml.indexOf('<div');
+    const headTags = firstDivIdx > 0 ? appHtml.slice(0, firstDivIdx).trim() : '';
+    const bodyHtml  = firstDivIdx > 0 ? appHtml.slice(firstDivIdx) : appHtml;
 
-    // Injection des balises <head> générées par react-helmet-async
-    if (helmet) {
-      const headTags = [
-        helmet.title.toString(),
-        helmet.meta.toString(),
-        helmet.link.toString(),
-        helmet.script.toString(),
-      ]
-        .filter(Boolean)
-        .join('\n    ');
-
-      page = page.replace('</head>', `    ${headTags}\n  </head>`);
+    let page = template.replace('<!--app-html-->', bodyHtml);
+    if (headTags) {
+      page = page.replace('</head>', `  ${headTags}\n  </head>`);
     }
 
     const filePath =

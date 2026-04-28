@@ -94,6 +94,29 @@ export default function TraverseePage() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="La Traversée — 3 Séances Coaching Gratuites | AUTHENTIK" />
       <meta name="twitter:description" content="3 rendez-vous gratuits de 75 min pour les leaders qui sentent qu'il manque quelque chose d'essentiel." />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "La Traversée AUTHENTIK",
+        "description": "3 rendez-vous gratuits de 75 minutes pour les dirigeants qui sentent qu'il manque quelque chose d'essentiel. Un cycle Voir · Sentir · Oser avec Alain et Éric.",
+        "url": "https://experience-authentik.com/traversee",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://experience-authentik.com/#organization",
+          "name": "AUTHENTIK"
+        },
+        "serviceType": "Coaching de vie pour dirigeants",
+        "areaServed": "Online",
+        "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://experience-authentik.com/traversee", "availableLanguage": "fr" },
+        "offers": {
+          "@type": "Offer",
+          "name": "La Traversée — 3 séances de coaching gratuites",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock",
+          "description": "3 rendez-vous de 75 min en ligne, sans engagement. Gratuit pour les dirigeants en quête de sens."
+        }
+      })}</script>
     </Helmet>
     <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-orange-500/30">
 

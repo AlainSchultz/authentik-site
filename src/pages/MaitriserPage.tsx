@@ -590,6 +590,65 @@ export default function MaitriserPage() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Bilan Archétypal Personnalisé — AUTHENTIK" />
       <meta name="twitter:description" content="Analyse sur mesure de vos forces, blocages et croyances limitantes. Dès 79€." />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Bilan Archétypal AUTHENTIK",
+        "description": "Document personnalisé de 3 500 mots sur votre profil archétypal : forces, blocages, croyances limitantes et feuille de route 90 jours.",
+        "url": "https://experience-authentik.com/bilan",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://experience-authentik.com/#organization",
+          "name": "AUTHENTIK"
+        },
+        "serviceType": "Bilan coaching personnalisé",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Bilan Archétypal Complet",
+            "price": "79",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "description": "Document personnalisé de 3 500 à 4 000 mots livré sous 72h en PDF.",
+            "url": "https://www.authentik-experience.com/authentikbilancomplet-bdc"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pack Signature AUTHENTIK",
+            "price": "249",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "description": "60 min en visio avec Éric et Alain + Bilan Complet enrichi livré sous 48h.",
+            "url": "https://www.authentik-experience.com/authentikpacksignature"
+          }
+        ],
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Laurent, 46 ans" },
+            "reviewBody": "Le Bilan m'a montré quelque chose que je n'avais jamais vu : les tensions entre mes forces. Les 'sortilèges'... voir mes croyances limitantes nommées avec cette précision, c'était troublant. Les contre-incantations sont devenues mes mantras.",
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Sophie, 41 ans" },
+            "reviewBody": "Le Pack Signature a été un déclic. La feuille de route 30/60/90 jours n'est pas un plan d'action générique. Ce sont des rituels d'observation. Ça change tout.",
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Marc, 48 ans" },
+            "reviewBody": "'Le Courage de Trahir la Perfection', 'Le Sabotage du Script'... ce ne sont pas des métaphores. Ce sont des gestes à poser. Je l'ai imprimé, annoté. C'est devenu ma boussole.",
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "3",
+          "bestRating": "5"
+        }
+      })}</script>
     </Helmet>
     <div className="min-h-screen font-display bg-brand-bg">
       <Navbar />

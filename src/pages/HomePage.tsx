@@ -196,55 +196,6 @@ export default function HomePage() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="AUTHENTIK — Coaching de Vie pour Dirigeants" />
       <meta name="twitter:description" content="Pour les leaders qui ont tout réussi mais qui ont perdu leur feu." />
-      <script type="application/ld+json">{JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://experience-authentik.com/#organization",
-            "name": "AUTHENTIK",
-            "url": "https://experience-authentik.com",
-            "description": "AUTHENTIK accompagne les leaders qui ont tout réussi mais qui ont perdu leur élan vital. Coaching de vie pour dirigeants — Genève, Paris, Montréal.",
-            "email": "contact@experience-authentik.com",
-            "areaServed": ["Genève", "Paris", "Montréal"],
-            "founder": [
-              { "@type": "Person", "name": "Alain" },
-              { "@type": "Person", "name": "Éric" }
-            ],
-            "sameAs": []
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "J'ai déjà tout essayé (coaching, retraites...), pourquoi ce serait différent ?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Parce qu'AUTHENTIK n'est pas une accumulation d'outils, mais une expérience de rupture. On ne rajoute rien, on enlève le bruit. Ce n'est pas 'comprendre' pourquoi ça bloque, c'est voir où vous vous auto-illusionnez." }
-              },
-              {
-                "@type": "Question",
-                "name": "Je ne veux pas tout foutre en l'air (famille, business...).",
-                "acceptedAnswer": { "@type": "Answer", "text": "La transformation n'est pas une destruction. Il ne s'agit pas de brûler votre empire, mais d'y remettre du feu. Vous n'avez pas besoin de tout quitter pour vous retrouver, mais de changer le lieu depuis lequel vous agissez." }
-              },
-              {
-                "@type": "Question",
-                "name": "Je n'ai pas le temps, je suis sous l'eau.",
-                "acceptedAnswer": { "@type": "Answer", "text": "Si vous n'avez pas le temps de vous arrêter, c'est que vous dérivez déjà. La pause est un acte de puissance. C'est un recalibrage essentiel pour celui qui veut continuer à diriger avec justesse." }
-              },
-              {
-                "@type": "Question",
-                "name": "Je ne suis pas très 'émotions' ou 'spirituel'.",
-                "acceptedAnswer": { "@type": "Answer", "text": "C'est parfait. Nous non plus. AUTHENTIK est une expérience de lucidité et de clarté stratégique. On ne vous demande pas de vous épancher, mais d'avoir le courage de regarder la vérité en face." }
-              },
-              {
-                "@type": "Question",
-                "name": "C'est quoi ce duo Éric & Alain ?",
-                "acceptedAnswer": { "@type": "Answer", "text": "C'est l'alchimie du Chaos et du Silence. Éric (le Feu) déstabilise pour libérer l'énergie, Alain (l'Eau) aide à intégrer et ancrer dans la cohérence. La friction entre les deux fait naître la clarté." }
-              }
-            ]
-          }
-        ]
-      })}</script>
     </Helmet>
     <div className="min-h-screen selection:bg-orange-500/30 bg-[#020617] text-slate-200">
       {/* Navigation */}
